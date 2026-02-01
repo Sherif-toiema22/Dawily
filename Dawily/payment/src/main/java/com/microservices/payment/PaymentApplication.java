@@ -1,4 +1,4 @@
-package com.microservices.payment;
+package com.microservices.Payment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
