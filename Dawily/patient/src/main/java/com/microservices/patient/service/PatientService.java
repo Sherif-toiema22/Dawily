@@ -7,10 +7,10 @@ import java.util.List;
 
 @Service
 public class PatientService {
-    private List<String> names= Arrays.asList("Ahmed","Abd","khaled");
+    private final List<String> names= Arrays.asList("Ahmed","Abd","khaled");
 
     public String getName(String name){
         return names.stream().filter(n -> n.equals(name))
-                .findAny().orElse("Not patient found!");
+                .findAny().orElse("No patient found!");
     }
 }
