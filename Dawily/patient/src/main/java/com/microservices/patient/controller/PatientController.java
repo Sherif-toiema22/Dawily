@@ -12,8 +12,11 @@ import java.util.UUID;
 @RestController
 @Slf4j
 public class PatientController {
+    private final PatientService patientService;
     @Autowired
-    private PatientService patientService;
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @GetMapping("/search/{name}")
     public String getName(@PathVariable("name") String name){

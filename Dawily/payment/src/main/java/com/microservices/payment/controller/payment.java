@@ -1,2 +1,4 @@
-package com.microservices.Payment.controller;public class payment {
+package com.microservices.Payment.controller;
+
+public class payment {
 }
