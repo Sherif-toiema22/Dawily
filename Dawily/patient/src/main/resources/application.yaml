@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: PATIENT-SERVICE
+  datasource:
+    url: jdbc:h2:../database/patient_db
+    driver-class-name: org.h2.Driver
+    username: root
+    password:
+  jpa
 eureka:
   client:
     serviceUrl:
