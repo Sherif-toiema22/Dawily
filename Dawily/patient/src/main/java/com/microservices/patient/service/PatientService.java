@@ -6,9 +6,7 @@ import com.microservices.patient.model.entity.Patient;
 import com.microservices.patient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PatientService {
@@ -38,5 +36,14 @@ public class PatientService {
     public Patient save (Patient p1){
         return patientRepository.save (p1);
     }
-    public Patient update (Patient patient){return patientRepository.save(patient);}
+    @Transactional
+    public Patient update (Patient newData ){
+        Patient patient=patientRepository.findById(newData.getId())
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+        patient.setPatientName(newData.getPatientName());
+        patient.setPatientAge(newData.getPatientAge());
+
+
+        return patient;
+    }
 }

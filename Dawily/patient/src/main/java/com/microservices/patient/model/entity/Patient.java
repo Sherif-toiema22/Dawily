@@ -1,6 +1,4 @@
 package com.microservices.patient.model.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,6 +50,14 @@ public class Patient {
 //        return patientName;
 //    }
 //
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 //    public void setPatientName(String patientName) {
 //        this.patientName = patientName;
 //    }

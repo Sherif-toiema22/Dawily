@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PatientController {
 
-    @Autowired
-    private PatientService patientService;
 
+    private final PatientService patientService;
+    @Autowired
+    PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @PostMapping("/add-patient")
     public Patient save (@RequestBody Patient patient){
@@ -21,7 +24,7 @@ public class PatientController {
     }
     @PutMapping ("/update-patient")
     public Patient update (@RequestBody Patient patient){
-        return this.patientService.update(patient);
+        return this.patientService.update( patient);
     }
 
 
