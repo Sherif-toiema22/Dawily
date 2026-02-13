@@ -19,6 +19,11 @@ public class PatientController {
         System.out.println(patient);
         return patientService.save(patient);
     }
+    @PutMapping ("/update-patient")
+    public Patient update (@RequestBody Patient patient){
+        return this.patientService.update(patient);
+    }
+
 
 
 }

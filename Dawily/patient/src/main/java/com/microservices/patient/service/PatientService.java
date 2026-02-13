@@ -16,12 +16,12 @@ public class PatientService {
     @Autowired
     private  PatientRepository patientRepository;
 
-    private final List<String> names= Arrays.asList("Ahmed","Abd","khaled");
+//    private final List<String> names= Arrays.asList("Ahmed","Abd","khaled");
 
-    public String getName(String name){
-        return names.stream().filter(n -> n.equals(name))
-                .findAny().orElse("No patient found!");
-    }
+//    public String getName(String name){
+//        return names.stream().filter(n -> n.equals(name))
+//                .findAny().orElse("No patient found!");
+//    }
 
 //    public AddPatientDTO save (AddPatientDTO dto){
 //        Patient entity = Patient.builder()
@@ -38,4 +38,5 @@ public class PatientService {
     public Patient save (Patient p1){
         return patientRepository.save (p1);
     }
+    public Patient update (Patient patient){return patientRepository.save(patient);}
 }
