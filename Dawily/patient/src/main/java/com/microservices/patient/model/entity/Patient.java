@@ -9,7 +9,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Setter
 @Getter
-@ToString
 public class Patient {
     @Id
     @Column(name ="id")
