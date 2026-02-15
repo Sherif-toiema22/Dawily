@@ -1,16 +1,38 @@
 package com.microservices.patient.service;
 
-import org.springframework.stereotype.Service;
+//import com.microservices.patient.model.dto.AddPatientDTO;
+import com.microservices.patient.mapper.PatientMapper;
+import com.microservices.patient.model.dto.PatientDTO;
+import com.microservices.patient.model.entity.Patient;
 
-import java.util.Arrays;
-import java.util.List;
+import com.microservices.patient.repository.PatientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PatientService {
-    private final List<String> names= Arrays.asList("Ahmed","Abd","khaled");
 
-    public String getName(String name){
-        return names.stream().filter(n -> n.equals(name))
-                .findAny().orElse("No patient found!");
+    private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
+
+    @Autowired
+    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper) {
+        this.patientRepository = patientRepository;
+        this.patientMapper = patientMapper;
+    }
+
+    public Patient save (PatientDTO dto){
+        return patientRepository.save (p1);
+    }
+    @Transactional
+    public Patient update (Patient newData ){
+        Patient patient=patientRepository.findById(newData.getId())
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+        patient.setPatientName(newData.getPatientName());
+        patient.setPatientAge(newData.getPatientAge());
+
+
+        return patient;
     }
 }

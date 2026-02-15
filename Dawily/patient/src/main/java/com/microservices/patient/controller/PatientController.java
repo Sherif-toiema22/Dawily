@@ -1,27 +1,32 @@
 package com.microservices.patient.controller;
 
+import com.microservices.patient.model.entity.Patient;
 import com.microservices.patient.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 public class PatientController {
+
+
     private final PatientService patientService;
     @Autowired
-    public PatientController(PatientService patientService) {
+    PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
-    @GetMapping("/search/{name}")
-    public String getName(@PathVariable("name") String name){
-//        log.info("new request : ", UUID.randomUUID());
-        return this.patientService.getName(name);
+    @PostMapping("/add-patient")
+    public Patient save (@RequestBody Patient patient){
+        System.out.println(patient);
+        return patientService.save(patient);
     }
+    @PutMapping ("/update-patient")
+    public Patient update (@RequestBody Patient patient){
+        return this.patientService.update( patient);
+    }
+
+
 
 }
