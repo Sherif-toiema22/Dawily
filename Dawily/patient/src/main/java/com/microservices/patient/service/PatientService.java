@@ -7,7 +7,6 @@ import com.microservices.patient.model.entity.Patient;
 
 import com.microservices.patient.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
