@@ -6,23 +6,25 @@ import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
 
 import com.microservices.patient.repository.PatientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PatientService {
 
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
-    @Autowired
-    public PatientService(PatientRepository patientRepository,
-                          PatientMapper patientMapper) {
-        this.patientRepository = patientRepository;
-        this.patientMapper = patientMapper;
-    }
+//    @Autowired
+//    public PatientService(PatientRepository patientRepository,
+//                          PatientMapper patientMapper) {
+//        this.patientRepository = patientRepository;
+//        this.patientMapper = patientMapper;
+//    }
 
     public PatientDTO save (PatientDTO dto){
         Patient patient = patientMapper.patientDTOtoPatient(dto);
