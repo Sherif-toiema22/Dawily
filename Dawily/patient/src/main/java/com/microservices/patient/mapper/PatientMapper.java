@@ -2,14 +2,17 @@ package com.microservices.patient.mapper;
 
 import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface PatientMapper {
-    PatientMapper PATIENT_MAPPER = Mappers.getMapper(PatientMapper.class);
 
+    @Mapping(target = "password", ignore = true)
     PatientDTO patientToPatientDTO(Patient patient);
     Patient patientDTOtoPatient(PatientDTO patientDTO);
 
+    @BeanMapping(nullValuePropertyMappingStrategy =
+            NullValuePropertyMappingStrategy.IGNORE)
+    void updatePatientFromDto(PatientDTO dto,
+                              @MappingTarget Patient entity);
 }

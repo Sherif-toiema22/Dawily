@@ -1,10 +1,13 @@
 package com.microservices.patient.controller;
 
-import com.microservices.patient.model.entity.Patient;
+import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -18,14 +21,37 @@ public class PatientController {
     }
 
     @PostMapping("/add-patient")
-    public Patient save (@RequestBody Patient patient){
-        System.out.println(patient);
-        return patientService.save(patient);
+    public ResponseEntity<PatientDTO> save (@RequestBody PatientDTO patientDTO){
+        System.out.println(patientDTO.toString());
+        return ResponseEntity.ok(patientService.save(patientDTO));
     }
-    @PutMapping ("/update-patient")
-    public Patient update (@RequestBody Patient patient){
-        return this.patientService.update( patient);
+
+    @GetMapping
+    public ResponseEntity<List<PatientDTO>> getAll() {
+        return ResponseEntity.ok(patientService.getAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientDTO> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(patientService.getById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientDTO> update(
+            @PathVariable Long id,
+            @RequestBody PatientDTO dto) {
+        return ResponseEntity.ok(patientService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        patientService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+//    @PutMapping ("/update-patient")
+//    public Patient update (@RequestBody Patient patient){
+//        return this.patientService.update( patient);
+//    }
 
 
 
