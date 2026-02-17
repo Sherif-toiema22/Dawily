@@ -2,17 +2,35 @@ package com.microservices.patient.mapper;
 
 import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
-import org.mapstruct.*;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface PatientMapper {
+@Component
+public class PatientMapper {
 
-    @Mapping(target = "password", ignore = true)
-    PatientDTO patientToPatientDTO(Patient patient);
-    Patient patientDTOtoPatient(PatientDTO patientDTO);
+    public PatientDTO toDto(Patient patient) {
+        PatientDTO dto = new PatientDTO();
+        dto.setPatientId(patient.getId());
+        dto.setPatientName(patient.getPatientName());
+        dto.setPatientAge(patient.getPatientAge());
+        return dto;
+    }
 
-    @BeanMapping(nullValuePropertyMappingStrategy =
-            NullValuePropertyMappingStrategy.IGNORE)
-    void updatePatientFromDto(PatientDTO dto,
-                              @MappingTarget Patient entity);
+    public Patient toEntity(PatientDTO dto) {
+        Patient patient = new Patient();
+        patient.setId(dto.getPatientId());
+        patient.setPatientName(dto.getPatientName());
+        patient.setPatientAge(dto.getPatientAge());
+        return patient;
+    }
+    public void updatePatientFromDto(PatientDTO dto, Patient patient) {
+
+        if (dto.getPatientName() != null) {
+            patient.setPatientName(dto.getPatientName());
+        }
+
+        if (dto.getPatientAge() != null) {
+            patient.setPatientAge(dto.getPatientAge());
+        }
+    }
+
 }

@@ -2,8 +2,8 @@ package com.microservices.patient.controller;
 
 import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.service.PatientService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +15,10 @@ public class PatientController {
 
 
     private final PatientService patientService;
-    @Autowired
-    PatientController(PatientService patientService) {
+
+    public PatientController(PatientService patientService) {
+        System.out.println("PatientController created. Service is: " +
+                (patientService == null ? "NULL" : "INJECTED"));
         this.patientService = patientService;
     }
 

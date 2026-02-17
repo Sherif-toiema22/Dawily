@@ -6,33 +6,38 @@ import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
 
 import com.microservices.patient.repository.PatientRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+//@RequiredArgsConstructor
+@Transactional
+@Slf4j
 public class PatientService {
 
-    private  PatientRepository patientRepository;
-    private  PatientMapper patientMapper;
+    private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
-//    @Autowired
-//    public PatientService(PatientRepository patientRepository,
-//                          PatientMapper patientMapper) {
-//        this.patientRepository = patientRepository;
-//        this.patientMapper = patientMapper;
-//    }
+    public PatientService(PatientRepository patientRepository,
+                          PatientMapper patientMapper) {
+        this.patientRepository = patientRepository;
+        this.patientMapper = patientMapper;
+    }
 
     public PatientDTO save (PatientDTO dto){
-        Patient patient = patientMapper.patientDTOtoPatient(dto);
+        Patient patient = patientMapper.toEntity(dto);
         Patient saved = patientRepository.save(patient);
-        return patientMapper.patientToPatientDTO (saved);
+        return patientMapper.toDto (saved);
     }
 
     public List<PatientDTO> getAll() {
         return patientRepository.findAll()
                 .stream()
-                .map(patientMapper::patientToPatientDTO)
+                .map(patientMapper::toDto)
                 .toList();
     }
 
@@ -40,7 +45,7 @@ public class PatientService {
     public PatientDTO getById(Long id) {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
-        return patientMapper.patientToPatientDTO(patient);
+        return patientMapper.toDto(patient);
     }
 
     public PatientDTO update(Long id, PatientDTO dto) {
@@ -49,7 +54,7 @@ public class PatientService {
 
         patientMapper.updatePatientFromDto(dto, patient);
 
-        return patientMapper.patientToPatientDTO(patientRepository.save(patient));
+        return patientMapper.toDto(patientRepository.save(patient));
     }
 
     // DELETE

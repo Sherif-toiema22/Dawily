@@ -5,7 +5,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientDTO {
-    private Integer patientId;
+    private Long patientId;
     private String patientName;
     private Integer patientAge;
 
@@ -18,11 +18,11 @@ public class PatientDTO {
                 '}';
     }
 
-    public Integer getPatientId() {
+    public Long getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(Integer patientId) {
+    public void setPatientId(Long patientId) {
         this.patientId = patientId;
     }
 
