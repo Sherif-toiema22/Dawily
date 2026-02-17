@@ -6,17 +6,15 @@ import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
 
 import com.microservices.patient.repository.PatientRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PatientService {
 
-    private final PatientRepository patientRepository;
-    private final PatientMapper patientMapper;
+    private  PatientRepository patientRepository;
+    private  PatientMapper patientMapper;
 
 //    @Autowired
 //    public PatientService(PatientRepository patientRepository,
