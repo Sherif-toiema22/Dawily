@@ -7,8 +7,6 @@ import javax.persistence.*;
 @Table(name = "patients")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
 public class Patient {
     @Id
     @Column(name ="id")
