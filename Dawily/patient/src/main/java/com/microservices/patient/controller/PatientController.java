@@ -50,10 +50,6 @@ public class PatientController {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
     }
-//    @PutMapping ("/update-patient")
-//    public Patient update (@RequestBody Patient patient){
-//        return this.patientService.update( patient);
-//    }
 
 
 
