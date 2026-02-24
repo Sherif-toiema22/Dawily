@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Table(name = "patients")
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 public class Patient {
     @Id
     @Column(name ="id")
@@ -27,34 +29,34 @@ public class Patient {
                 ", patientAge=" + patientAge +
                 '}';
     }
-
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    public Integer getPatientAge() {
-        return patientAge;
-    }
-
-    public void setPatientAge(Integer patientAge) {
-        this.patientAge = patientAge;
-    }
+//
 //    public String getPatientName() {
 //        return patientName;
 //    }
 //
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setPatientName(String patientName) {
+//        this.patientName = patientName;
+//    }
+//
+//    public Integer getPatientAge() {
+//        return patientAge;
+//    }
+//
+//    public void setPatientAge(Integer patientAge) {
+//        this.patientAge = patientAge;
+//    }
+////    public String getPatientName() {
+////        return patientName;
+////    }
+////
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 //    public void setPatientName(String patientName) {
 //        this.patientName = patientName;
 //    }

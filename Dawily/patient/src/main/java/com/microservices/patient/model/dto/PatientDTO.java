@@ -4,6 +4,8 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 public class PatientDTO {
     private Long patientId;
     private String patientName;
@@ -17,28 +19,28 @@ public class PatientDTO {
                 ", patientAge=" + patientAge +
                 '}';
     }
-
-    public Long getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
-
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    public Integer getPatientAge() {
-        return patientAge;
-    }
-
-    public void setPatientAge(Integer patientAge) {
-        this.patientAge = patientAge;
-    }
+//
+//    public Long getPatientId() {
+//        return patientId;
+//    }
+//
+//    public void setPatientId(Long patientId) {
+//        this.patientId = patientId;
+//    }
+//
+//    public String getPatientName() {
+//        return patientName;
+//    }
+//
+//    public void setPatientName(String patientName) {
+//        this.patientName = patientName;
+//    }
+//
+//    public Integer getPatientAge() {
+//        return patientAge;
+//    }
+//
+//    public void setPatientAge(Integer patientAge) {
+//        this.patientAge = patientAge;
+//    }
 }
