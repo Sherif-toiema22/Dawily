@@ -2,35 +2,27 @@ package com.microservices.patient.mapper;
 
 import com.microservices.patient.model.dto.PatientDTO;
 import com.microservices.patient.model.entity.Patient;
-import org.springframework.stereotype.Component;
 
-@Component
-public class PatientMapper {
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
-    public PatientDTO toDto(Patient patient) {
-        PatientDTO dto = new PatientDTO();
-        dto.setPatientId(patient.getId());
-        dto.setPatientName(patient.getPatientName());
-        dto.setPatientAge(patient.getPatientAge());
-        return dto;
-    }
 
-    public Patient toEntity(PatientDTO dto) {
-        Patient patient = new Patient();
-        patient.setId(dto.getPatientId());
-        patient.setPatientName(dto.getPatientName());
-        patient.setPatientAge(dto.getPatientAge());
-        return patient;
-    }
-    public void updatePatientFromDto(PatientDTO dto, Patient patient) {
+@Mapper(componentModel = "spring")
+public interface PatientMapper {
 
-        if (dto.getPatientName() != null) {
-            patient.setPatientName(dto.getPatientName());
-        }
+    // 🔹 Entity → DTO
+    PatientDTO toDto(Patient patient);
 
-        if (dto.getPatientAge() != null) {
-            patient.setPatientAge(dto.getPatientAge());
-        }
-    }
+    // 🔹 DTO → Entity
+    Patient toEntity(PatientDTO dto);
 
+    // 🔥 Update existing entity (PUT style)
+    @Mapping(target = "id", ignore = true)
+    void updatePatientFromDto(PatientDTO dto, @MappingTarget Patient patient);
+
+    // 🔥 Partial update (PATCH style)
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    @Mapping(target = "id", ignore = true)
+//    void partialUpdate(PatientDTO dto, @MappingTarget Patient patient);
 }
