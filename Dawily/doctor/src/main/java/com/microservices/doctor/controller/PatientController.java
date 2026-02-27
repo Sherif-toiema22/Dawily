@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
     private final PatientService patientService;
 
+
     @Autowired
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
