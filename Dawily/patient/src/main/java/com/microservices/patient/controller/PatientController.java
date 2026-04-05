@@ -28,24 +28,24 @@ public class PatientController {
         return ResponseEntity.ok(patientService.save(patientDTO));
     }
 
-    @GetMapping
+    @GetMapping("/patients")
     public ResponseEntity<List<PatientDTO>> getAll() {
         return ResponseEntity.ok(patientService.getAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get-patient/{id}")
     public ResponseEntity<PatientDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(patientService.getById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-patient/{id}")
     public ResponseEntity<PatientDTO> update(
             @PathVariable Long id,
             @RequestBody PatientDTO dto) {
         return ResponseEntity.ok(patientService.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-patient/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
