@@ -15,6 +15,10 @@ public class PatientService {
     }
 
     public PatientDTO getPatient(Long id) {
-        return this.patientProxy.getById(id).getBody();
+        return this.patientProxy.getPatientById(id).getBody();
+    }
+
+    public PatientDTO save(PatientDTO patientDTO) {
+        return this.patientProxy.save(patientDTO).getBody();
     }
 }
